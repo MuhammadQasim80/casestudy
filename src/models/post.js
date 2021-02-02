@@ -11,11 +11,6 @@ const postSchema = new Schema({
   url: {
     type: String,
     required: true,
-    validate(value) {
-      if (!validator.isUrl(value)) {
-        throw new Error('Invalid url');
-      }
-    },
   },
   img: {type: String, required: true},
   date: {type: Date, default: Date.now()},
