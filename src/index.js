@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 const app = express();
 const config = require('./config');
 
+require('./jobs/cron.send.newsletter');
+
 var indexRoutes = require('./routes/index');
 var userRoutes = require('./routes/users');
 var postRoutes = require('./routes/posts');
-require('./jobs/cron.send.newsletter');
+
 app.use(express.json());
 
 app.use('/', indexRoutes);

@@ -1,5 +1,5 @@
+const mongoose = require('mongoose');
 const User = require('../models/user');
-
 /**
  *
  * @param {Object} userBody contains information for newly creating user
@@ -28,6 +28,9 @@ const getAllUsers = async () => {
  * @returns {Object} user object
  */
 const getUserById = async (id) => {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new Error('Invalid user id: ' + id);
+  }
   const user = await User.findById(id);
   return user;
 };

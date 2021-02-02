@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 const {Schema} = mongoose;
 
 /**
@@ -7,7 +8,15 @@ const {Schema} = mongoose;
 const postSchema = new Schema({
   title: {type: String, required: true},
   comments: {type: [String]},
-  url: {type: String, required: true},
+  url: {
+    type: String,
+    required: true,
+    validate(value) {
+      if (!validator.isUrl(value)) {
+        throw new Error('Invalid url');
+      }
+    },
+  },
   img: {type: String, required: true},
   date: {type: Date, default: Date.now()},
   votes: {type: Number, default: 0},
