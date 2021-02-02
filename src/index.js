@@ -15,7 +15,6 @@ app.use('/posts', postRoutes);
 
 const {port, mongodb} = config;
 
-console.log('mongodb url:', mongodb.url);
 mongoose
   .connect(mongodb.url, mongodb.options)
   .then(() => {

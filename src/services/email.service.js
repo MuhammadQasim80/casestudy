@@ -101,7 +101,6 @@ const getUserLetter = (favorites, dateTime) => {
  */
 const sendNewsletter = async (dateTime) => {
   const subscribers = await UserService.getNewsletterSubscribers();
-  console.log({subscribers});
   subscribers.forEach(async (user) => {
     getUserLetter(user.favorites, dateTime).then((userLetter) => {
       if (Object.keys(userLetter).length) {
